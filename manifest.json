@@ -1,0 +1,16 @@
+{
+  "name": "MealTracker",
+  "short_name": "MealTracker",
+  "description": "Meal attendance tracking app",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#F5F5F7",
+  "theme_color": "#F5F5F7",
+  "icons": [
+    {
+      "src": "flan-icon.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    }
+  ]
+}
