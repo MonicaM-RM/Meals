@@ -10,10 +10,10 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="MealTracker">
-  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23667eea' width='100' height='100' rx='20'/><text y='70' x='50' text-anchor='middle' font-size='50'>🍽️</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%230071E3' width='100' height='100' rx='22'/><g transform='translate(50 50)'><circle cx='0' cy='0' r='22' fill='white' stroke='%23D1D1D6' stroke-width='2'/><circle cx='0' cy='0' r='15' stroke='%23F2F2F7' stroke-width='1.5'/><path d='M-30 -12 V12 C-30 18 -24 18 -24 12 V-12' stroke='%231D1D1F' stroke-width='3' stroke-linecap='round'/><path d='M-27 -12 V8' stroke='%231D1D1F' stroke-width='3' stroke-linecap='round'/><path d='M-27 20 V30' stroke='%231D1D1F' stroke-width='3' stroke-linecap='round'/><path d='M28 -12 V30' stroke='%231D1D1F' stroke-width='3' stroke-linecap='round'/><path d='M28 -12 C24 -12 24 12 28 12' stroke='%231D1D1F' stroke-width='3' stroke-linecap='round'/></g></svg>">
   
   <!-- PWA Manifest (inline) -->
-  <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIk1lYWxUcmFja2VyIiwKICAic2hvcnRfbmFtZSI6ICJNZWFsVHJhY2tlciIsCiAgImRlc2NyaXB0aW9uIjogIk1lYWwgYXR0ZW5kYW5jZSB0cmFja2luZyBhcHAiLAogICJzdGFydF91cmwiOiAiLiIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiI2Y4ZmJmZiIsCiAgInRoZW1lX2NvbG9yIjogIiM2NjdlZWEiLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWwsPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDAgMTAwJz48cmVjdCBmaWxsPSclMjM2NjdlZWEnIHdpZHRoPScxMDAnIGhlaWdodD0nMTAwJyByeD0nMjAnLz48dGV4dCB5PSc3MCcgeD0nNTAnIHRleHQtYW5jaG9yPSdtaWRkbGUnIGZvbnQtc2l6ZT0nNTAnPvCfja7vuI88L3RleHQ+PC9zdmc+IiwKICAgICAgInNpemVzIjogIjE5MngxOTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIgogICAgfQogIF0KfQ==">
+  <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIk1lYWxUcmFja2VyIiwKICAic2hvcnRfbmFtZSI6ICJNZWFsVHJhY2tlciIsCiAgImRlc2NyaXB0aW9uIjogIk1lYWwgYXR0ZW5kYW5jZSB0cmFja2luZyBhcHAiLAogICJzdGFydF91cmwiOiAiLiIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiI0Y1RjVGNyIsCiAgInRoZW1lX2NvbG9yIjogIiNGNUY1RjciLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWwsPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDAgMTAwJz48cmVjdCBmaWxsPSclMjMwMDcxRTMnIHdpZHRoPScxMDAnIGhlaWdodD0nMTAwJyByeD0nMjInLz48ZyB0cmFuc2Zvcm09J3RyYW5zbGF0ZSg1MCA1MCknPjxjaXJjbGUgY3g9JzAnIGN5PScwJyByPScyMicgZmlsbD0nd2hpdGUnIHN0cm9rZT0nJTIzRDFEMUQ2JyBzdHJva2Utd2lkdGg9JzInLz48Y2lyY2xlIGN4PScwJyBjeT0nMCcgcj0nMTUnIHN0cm9rZT0nJTIzRjJGMkY3JyBzdHJva2Utd2lkdGg9JzEuNScvPjxwYXRoIGQ9J00tMzAgLTEyIFYxMiBDLTMwIDE4IC0yNCAxOCAtMjQgMTIgVi0xMicgc3Ryb2tlPSclMjMxRDFEMUYnIHN0cm9rZS13aWR0aD0nMycgc3Ryb2tlLWxpbmVjYXA9J3JvdW5kJy8+PHBhdGggZD0nTS0yNyAtMTIgVjgnIHN0cm9rZT0nJTIzMUQxRDFGJyBzdHJva2Utd2lkdGg9JzMnIHN0cm9rZS1saW5lY2FwPSdyb3VuZCcvPjxwYXRoIGQ9J00tMjcgMjAgVjMwJyBzdHJva2U9JyUyMzFEMUQxRicgc3Ryb2tlLXdpZHRoPSczJyBzdHJva2UtbGluZWNhcD0ncm91bmQnLz48cGF0aCBkPSdNMjggLTEyIFYzMCcgc3Ryb2tlPSclMjMxRDFEMUYnIHN0cm9rZS13aWR0aD0nMycgc3Ryb2tlLWxpbmVjYXA9J3JvdW5kJy8+PHBhdGggZD0nTTI4IC0xMiBDMjQgLTEyIDI0IDEyIDI4IDEyJyBzdHJva2U9JyUyMzFEMUQxRicgc3Ryb2tlLXdpZHRoPSczJyBzdHJva2UtbGluZWNhcD0ncm91bmQnLz48L2c+PC9zdmc+IiwKICAgICAgInNpemVzIjogIjE5MngxOTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIgogICAgfQogIF0KfQ==">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,22 +38,7 @@
 
     <!-- WELCOME -->
     <div id="welcomeScreen" class="welcome" role="main">
-      <div class="logo">
-        <svg width="100" height="100" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Plate -->
-          <circle cx="60" cy="60" r="34" fill="white" stroke="#D1D1D6" stroke-width="3"/>
-          <circle cx="60" cy="60" r="24" stroke="#F2F2F7" stroke-width="2"/>
-          
-          <!-- Fork (Left) -->
-          <path d="M24 35 V65 C24 73 32 73 32 65 V35" stroke="#1D1D1F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M28 35 V60" stroke="#1D1D1F" stroke-width="4" stroke-linecap="round"/>
-          <path d="M28 73 V95" stroke="#1D1D1F" stroke-width="4" stroke-linecap="round"/>
-          
-          <!-- Knife (Right) -->
-          <path d="M92 35 V95" stroke="#1D1D1F" stroke-width="4" stroke-linecap="round"/>
-          <path d="M92 35 C86 35 86 65 92 65" stroke="#1D1D1F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
+      <div class="logo">🍽️</div>
       <h1>MealTracker</h1>
       <div class="subtitle">Meal attendance tracking — Real-time sync</div>
 
