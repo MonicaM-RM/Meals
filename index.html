@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MealTracker — Meal Attendance</title>
+  
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#F5F5F7">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="MealTracker">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23667eea' width='100' height='100' rx='20'/><text y='70' x='50' text-anchor='middle' font-size='50'>🍽️</text></svg>">
+  
+  <!-- PWA Manifest (inline) -->
+  <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIk1lYWxUcmFja2VyIiwKICAic2hvcnRfbmFtZSI6ICJNZWFsVHJhY2tlciIsCiAgImRlc2NyaXB0aW9uIjogIk1lYWwgYXR0ZW5kYW5jZSB0cmFja2luZyBhcHAiLAogICJzdGFydF91cmwiOiAiLiIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiI2Y4ZmJmZiIsCiAgInRoZW1lX2NvbG9yIjogIiM2NjdlZWEiLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWwsPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDAgMTAwJz48cmVjdCBmaWxsPSclMjM2NjdlZWEnIHdpZHRoPScxMDAnIGhlaWdodD0nMTAwJyByeD0nMjAnLz48dGV4dCB5PSc3MCcgeD0nNTAnIHRleHQtYW5jaG9yPSdtaWRkbGUnIGZvbnQtc2l6ZT0nNTAnPvCfja7vuI88L3RleHQ+PC9zdmc+IiwKICAgICAgInNpemVzIjogIjE5MngxOTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIgogICAgfQogIF0KfQ==">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+</head>
+<body>
+  <div class="bg-decoration"></div>
+  
+  <!-- Sync Status -->
+  <div id="syncStatus" class="sync-status disconnected">
+    <span class="dot"></span>
+    <span id="syncText">Connecting...</span>
+  </div>
+
+  <div class="app">
+
+    <!-- WELCOME -->
+    <div id="welcomeScreen" class="welcome" role="main">
+      <div class="logo">🍽️</div>
+      <h1>MealTracker</h1>
+      <div class="subtitle">Meal attendance tracking — Real-time sync</div>
+
+      <div class="options" id="optionsContainer">
+        <button id="btnLogin" class="opt-btn">
+          <div class="opt-icon login"><i class="fas fa-sign-in-alt"></i></div>
+          <div class="opt-label">Log in</div>
+          <div class="opt-desc">Mark your meal attendance for the week</div>
+        </button>
+
+        <button id="btnViewData" class="opt-btn">
+          <div class="opt-icon data"><i class="fas fa-chart-bar"></i></div>
+          <div class="opt-label">View data</div>
+          <div class="opt-desc">Table with totals by day and meal</div>
+        </button>
+
+        <button id="btnCreate" class="opt-btn">
+          <div class="opt-icon create"><i class="fas fa-user-plus"></i></div>
+          <div class="opt-label">Create user</div>
+          <div class="opt-desc">Register a new user in the system</div>
+        </button>
+
+        <button id="btnEdit" class="opt-btn">
+          <div class="opt-icon edit"><i class="fas fa-users-cog"></i></div>
+          <div class="opt-label">Edit users</div>
+          <div class="opt-desc">Modify or delete existing users</div>
+        </button>
+      </div>
+    </div>
+
+    <!-- LOGIN VIEW -->
+    <section id="viewLogin" class="view">
+      <div class="topbar">
+        <div>
+          <div class="topbar-title"><i class="fas fa-sign-in-alt" style="color: var(--accent); margin-right: 8px;"></i>Log in</div>
+          <div class="topbar-subtitle">Select your name to log in</div>
+        </div>
+        <button class="btn ghost" id="backFromLogin"><i class="fas fa-arrow-left"></i> Back</button>
+      </div>
+
+      <div class="form-grid">
+        <div class="field">
+          <label for="loginUserSelect"><i class="fas fa-user" style="margin-right: 6px;"></i>Select User</label>
+          <select id="loginUserSelect">
+              <option value="">Loading users...</option>
+          </select>
+        </div>
+        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+          <button id="doLogin" class="btn"><i class="fas fa-sign-in-alt"></i> Log in</button>
+          <div id="loginMsg"></div>
+        </div>
+      </div>
+
+      <div id="sessionArea" class="session-container" style="display:none">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px">
+          <h3 id="sessionTitle" style="font-size:18px;font-weight:800;color:#1e293b"></h3>
+          <div class="small"><i class="fas fa-info-circle"></i> Click to change: ✕ → ✓ → L → ✕</div>
+        </div>
+
+        <div id="sessionGrid" class="session-grid"></div>
+
+        <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+          <button id="saveSession" class="btn"><i class="fas fa-save"></i> Save</button>
+          <button id="logout" class="btn ghost"><i class="fas fa-sign-out-alt"></i> Log out</button>
+          <div id="sessionMsg"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW DATA -->
+    <section id="viewData" class="view">
+      <div class="topbar">
+        <div>
+          <div class="topbar-title"><i class="fas fa-chart-bar" style="color: #10b981; margin-right: 8px;"></i>Totals by day and meal</div>
+          <div class="topbar-subtitle">✓ and L count as attendance</div>
+        </div>
+        <div style="display:flex; gap: 10px;">
+            <button class="btn" id="btnExportCSV"><i class="fas fa-file-csv"></i> Export CSV</button>
+            <button class="btn ghost" id="backFromData"><i class="fas fa-arrow-left"></i> Back</button>
+        </div>
+      </div>
+
+      <table id="totalsTable" class="totals-table"></table>
+      <div id="totalsStack" class="totals-stack"></div>
+    </section>
+
+    <!-- CREATE -->
+    <section id="viewCreate" class="view">
+      <div class="topbar">
+        <div>
+          <div class="topbar-title"><i class="fas fa-user-plus" style="color: #f59e0b; margin-right: 8px;"></i>Create user</div>
+          <div class="topbar-subtitle">First name and last name are required</div>
+        </div>
+        <button class="btn ghost" id="backFromCreate"><i class="fas fa-arrow-left"></i> Back</button>
+      </div>
+
+      <div class="form-grid">
+        <div class="field">
+          <label for="createFirstName"><i class="fas fa-user" style="margin-right: 6px;"></i>First name</label>
+          <input id="createFirstName" type="text" placeholder="e.g. Mary" />
+        </div>
+        <div class="field">
+          <label for="createLastName"><i class="fas fa-user-tag" style="margin-right: 6px;"></i>Last name</label>
+          <input id="createLastName" type="text" placeholder="e.g. Smith" />
+        </div>
+        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+          <button id="createUserBtn" class="btn"><i class="fas fa-plus"></i> Create</button>
+          <div id="createMsg"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDIT -->
+    <section id="viewEdit" class="view">
+      <div class="topbar">
+        <div>
+          <div class="topbar-title"><i class="fas fa-users-cog" style="color: #ec4899; margin-right: 8px;"></i>Edit users</div>
+          <div class="topbar-subtitle">Modify names or delete users</div>
+        </div>
+        <button class="btn ghost" id="backFromEdit"><i class="fas fa-arrow-left"></i> Back</button>
+      </div>
+
+      <div id="editUserList" class="user-list"></div>
+    </section>
+
+    <!-- Modal -->
+    <div id="modalBackdrop" class="backdrop">
+      <div class="modal">
+        <h3><i class="fas fa-user-edit" style="color: var(--accent); margin-right: 8px;"></i>Edit user</h3>
+        <div class="form-grid">
+          <div class="field">
+            <label for="modalFirstName">First name</label>
+            <input id="modalFirstName" type="text" />
+          </div>
+          <div class="field">
+            <label for="modalLastName">Last name</label>
+            <input id="modalLastName" type="text" />
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button id="modalCancel" class="btn ghost">Cancel</button>
+          <button id="modalSave" class="btn"><i class="fas fa-save"></i> Save</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
